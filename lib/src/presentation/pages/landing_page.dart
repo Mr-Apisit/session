@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../features/state_ful.dart';
 import '../features/state_less.dart';
+import '../widgets/text_button.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -10,34 +11,57 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          height: 450,
+          height: double.maxFinite,
           width: double.maxFinite - 20,
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                    borderRadius: BorderRadius.circular(7.0),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (ctx) => const StateFul(title: "State full widget")));
-                    },
-                    child: Text(
-                      "State full widget",
-                      style: Theme.of(context).textTheme.titleLarge,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                    borderRadius: BorderRadius.circular(7.0),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (ctx) => StateLess(title: "State less widget")));
-                    },
-                    child: Text("State less widget", style: Theme.of(context).textTheme.titleLarge)),
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.only(top: 50.0),
+            child: Column(
+              children: [
+                Text(
+                  "FLutter Beginner",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MyTextButton(
+                        text: "State ful widget",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => const StateFul(
+                                title: "State full widget",
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15.0),
+                        child: Text("หรือ", style: Theme.of(context).textTheme.titleLarge),
+                      ),
+                      MyTextButton(
+                        text: "State less widget",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => const StateLess(
+                                title: "State less widget",
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           )),
     );
   }
