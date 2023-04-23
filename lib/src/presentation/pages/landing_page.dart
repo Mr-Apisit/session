@@ -10,20 +10,20 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-          height: double.maxFinite,
-          width: double.maxFinite - 20,
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0)),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              children: [
-                Text(
-                  "FLutter Beginner",
-                  style: Theme.of(context).textTheme.headlineLarge,
-                ),
-                Expanded(
-                  child: Row(
+      body: SingleChildScrollView(
+        child: Container(
+            height: 1000,
+            width: double.maxFinite - 20,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0)),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 50.0),
+              child: Column(
+                children: [
+                  Text(
+                    "FLutter Beginner",
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -59,10 +59,34 @@ class LandingPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          )),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Text("Widgets พื้นฐาน", style: Theme.of(context).textTheme.titleLarge),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+                    child: Container(
+                      height: 250,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: Text("Layouts พื้นฐาน", style: Theme.of(context).textTheme.titleLarge),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+                    child: Container(
+                      height: 250,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                    ),
+                  ),
+                ],
+              ),
+            )),
+      ),
     );
   }
 }
