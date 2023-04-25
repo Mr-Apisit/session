@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:session/src/presentation/widgets/chip.dart';
 
 import '../features/state_ful.dart';
 import '../features/state_less.dart';
+import '../features/widgets/app_bar.dart';
+import '../features/widgets/bottom_nav_bar.dart';
 import '../widgets/text_button.dart';
 
 class LandingPage extends StatelessWidget {
@@ -9,6 +12,15 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> widgetsGroup = [
+      {"topic": "Appbar", "navigator": const AppbarWidget(title: "My app bar")},
+      // {"topic": "Icon", "navigator": const WidgetsPage(1)},
+      // {"topic": "Image", "navigator": const WidgetsPage(2)},
+      // {"topic": "Row", "navigator": const WidgetsPage(3)},
+      // {"topic": "Column", "navigator": const WidgetsPage(4)},
+      // {"topic": "Text", "navigator": const WidgetsPage(5)},
+      {"topic": "BottomNavigationBar", "navigator": const BottmNavBarWidget()},
+    ];
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -69,6 +81,20 @@ class LandingPage extends StatelessWidget {
                       height: 250,
                       width: double.maxFinite,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                      child: Wrap(
+                        spacing: 6.0,
+                        alignment: WrapAlignment.center,
+                        runAlignment: WrapAlignment.center,
+                        children: [
+                          for (int i = 0; i < widgetsGroup.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MyChip((i + 1).toString(), widgetsGroup[i]["topic"],
+                                  onPressed: () => Navigator.push(
+                                      context, MaterialPageRoute(builder: (context) => widgetsGroup[i]["navigator"]))),
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(

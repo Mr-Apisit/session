@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:session/src/presentation/pages/landing_page.dart';
+
+import 'src/presentation/pages/_landing_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,10 +13,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
+      theme: ThemeData(colorSchemeSeed: const Color.fromARGB(255, 211, 211, 211), useMaterial3: true),
       home: const LandingPage(),
     );
   }
