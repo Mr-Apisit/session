@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum SampleItem { itemOne, itemTwo, itemThree }
+
 class AppbarWidget extends StatelessWidget {
   final String title;
   const AppbarWidget({required this.title, super.key});
@@ -38,26 +40,23 @@ class AppbarWidget extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Hello SWC this is snackbar')));
           },
         ),
-        IconButton(
-          icon: const Icon(Icons.navigate_next),
-          tooltip: 'Go to the next page',
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (BuildContext context) {
-                return Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Next page'),
-                  ),
-                  body: const Center(
-                    child: Text(
-                      'This is the next page',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                  ),
-                );
-              },
-            ));
-          },
+        PopupMenuButton<SampleItem>(
+          // Callback that sets the selected popup menu item.
+
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<SampleItem>>[
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemOne,
+              child: Text('Item 1'),
+            ),
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemTwo,
+              child: Text('Item 2'),
+            ),
+            const PopupMenuItem<SampleItem>(
+              value: SampleItem.itemThree,
+              child: Text('Item 3'),
+            ),
+          ],
         ),
       ],
       // The elevation value of the app bar when scroll view has

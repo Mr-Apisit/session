@@ -5,6 +5,8 @@ import '../features/state_ful.dart';
 import '../features/state_less.dart';
 import '../features/widgets/app_bar.dart';
 import '../features/widgets/bottom_nav_bar.dart';
+import '../features/widgets/image.dart';
+import '../features/widgets/tab_bar.dart';
 import '../widgets/text_button.dart';
 
 class LandingPage extends StatelessWidget {
@@ -14,12 +16,12 @@ class LandingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> widgetsGroup = [
       {"topic": "Appbar", "navigator": const AppbarWidget(title: "My app bar")},
-      // {"topic": "Icon", "navigator": const WidgetsPage(1)},
-      // {"topic": "Image", "navigator": const WidgetsPage(2)},
+      {"topic": "Tabbar", "navigator": const TabBarWidget(title: "My tab bar")},
+      {"topic": "BottomNavigationBar", "navigator": const BottomNavBarWidget(title:"My buttom navigation bar")},
+      {"topic": "Image", "navigator": const ImageWidget(title: "My image")},
       // {"topic": "Row", "navigator": const WidgetsPage(3)},
       // {"topic": "Column", "navigator": const WidgetsPage(4)},
       // {"topic": "Text", "navigator": const WidgetsPage(5)},
-      {"topic": "BottomNavigationBar", "navigator": const BottmNavBarWidget()},
     ];
     return Scaffold(
       body: SingleChildScrollView(
