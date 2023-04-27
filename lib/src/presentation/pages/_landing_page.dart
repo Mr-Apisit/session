@@ -20,6 +20,7 @@ import '../features/widgets/loading_circular.dart';
 import '../features/widgets/loading_linear.dart';
 import '../features/widgets/sized_box.dart';
 import '../features/widgets/tab_bar.dart';
+import '../features/widgets/text_input.dart';
 import '../widgets/text_button.dart';
 
 class LandingPage extends StatelessWidget {
@@ -50,6 +51,7 @@ class LandingPage extends StatelessWidget {
     ];
 
     List<Map<String, dynamic>> inputGroup = [
+      {"topic": "Text Input", "navigator": const TextInputWidget(title: "My text input")},
       {"topic": "DataTable", "navigator": const DataTableWidget(title: "My Data table")}
     ];
 
