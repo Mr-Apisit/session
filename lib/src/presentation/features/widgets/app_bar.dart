@@ -33,6 +33,19 @@ class AppbarWidget extends StatelessWidget {
         return notification.depth == 1;
       },
       actions: <Widget>[
+        const Badge(
+          backgroundColor: Colors.red,
+          alignment: AlignmentDirectional.topEnd,
+          label: Text(
+            '12',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          child: Icon(
+            Icons.notifications_active_rounded,
+          ),
+        ),
         IconButton(
           icon: const Icon(Icons.add_alert),
           tooltip: 'Show Snackbar',

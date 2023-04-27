@@ -12,9 +12,6 @@ class TabBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
-    final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     const int tabsCount = 3;
 
     return DefaultTabController(
@@ -22,7 +19,7 @@ class TabBarWidget extends StatelessWidget {
       length: tabsCount,
       child: Scaffold(
         appBar: AppBar(
-          title:  Text(title),
+          title: Text(title),
           // This check specifies which nested Scrollable's scroll notification
           // should be listened to.
           //
@@ -56,37 +53,23 @@ class TabBarWidget extends StatelessWidget {
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                  title: Text('${titles[0]} $index'),
-                );
-              },
-            ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                  title: Text('${titles[1]} $index'),
-                );
-              },
-            ),
-            ListView.builder(
-              itemCount: 25,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  tileColor: index.isOdd ? oddItemColor : evenItemColor,
-                  title: Text('${titles[2]} $index'),
-                );
-              },
-            ),
-          ],
-        ),
+        body: TabBarView(children: <Widget>[
+          Center(
+              child: Text(
+            titles[0],
+            style: Theme.of(context).textTheme.titleLarge,
+          )),
+          Center(
+              child: Text(
+            titles[1],
+            style: Theme.of(context).textTheme.titleLarge,
+          )),
+          Center(
+              child: Text(
+            titles[2],
+            style: Theme.of(context).textTheme.titleLarge,
+          )),
+        ]),
       ),
     );
   }

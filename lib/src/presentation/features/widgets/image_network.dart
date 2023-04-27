@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ImageWidget extends StatelessWidget {
+class NetworkImageWidget extends StatelessWidget {
   final String title;
-  const ImageWidget({required this.title, super.key});
+  const NetworkImageWidget({required this.title, super.key});
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(title: Text(title)),
         body: Center(
           child: Container(
-            height: size.height * .3,
-            width: size.width * .5,
+            height: 350,
+            width: 550,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(7.0),
