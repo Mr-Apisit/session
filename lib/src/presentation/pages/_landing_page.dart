@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:session/src/presentation/features/widgets/center.dart';
 import 'package:session/src/presentation/features/widgets/column.dart';
 import 'package:session/src/presentation/features/widgets/row.dart';
