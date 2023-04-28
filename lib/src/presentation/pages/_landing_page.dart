@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:session/src/presentation/features/future.dart';
+import 'package:session/src/presentation/features/stream.dart';
 import 'package:session/src/presentation/features/widgets/center.dart';
 import 'package:session/src/presentation/features/widgets/column.dart';
 import 'package:session/src/presentation/features/widgets/row.dart';
@@ -53,6 +55,11 @@ class LandingPage extends StatelessWidget {
     List<Map<String, dynamic>> inputGroup = [
       {"topic": "Text Input", "navigator": const TextInputWidget(title: "My text input")},
       {"topic": "DataTable", "navigator": const DataTableWidget(title: "My Data table")}
+    ];
+
+    List<Map<String, dynamic>> snapshotGroup = [
+      {"topic": "Future async/await", "navigator": const FutureWidget(title: "My Future async/wait")},
+      {"topic": "Stream boardcast ", "navigator": const StreamWidget(title: "My Stream boardcast")},
     ];
 
     return LayoutBuilder(
@@ -217,6 +224,33 @@ class LandingPage extends StatelessWidget {
                                 child: MyChip((i + 1).toString(), inputGroup[i]["topic"],
                                     onPressed: () => Navigator.push(
                                         context, MaterialPageRoute(builder: (context) => inputGroup[i]["navigator"]))),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Text("Future/Stream boardcast พื้นฐาน", style: Theme.of(context).textTheme.titleLarge),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
+                      child: Container(
+                        height: 250,
+                        width: double.maxFinite,
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        child: Wrap(
+                          spacing: 6.0,
+                          alignment: WrapAlignment.center,
+                          runAlignment: WrapAlignment.center,
+                          children: [
+                            for (int i = 0; i < snapshotGroup.length; i++)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: MyChip((i + 1).toString(), snapshotGroup[i]["topic"],
+                                    onPressed: () => Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => snapshotGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
