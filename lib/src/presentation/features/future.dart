@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 Future<int> incrementCounter(int counter) async {
+  await Future.delayed(const Duration(seconds: 3));
   return counter + 1;
 }
 
@@ -40,20 +41,10 @@ class FutureWidget extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: FutureBuilder<int>(
-            future: incrementCounter(counter),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return FloatingActionButton(
-                  onPressed: () async {
-                    await incrementCounter(snapshot.data ?? 0);
-                  },
-                  tooltip: 'Increment',
-                  child: const Icon(Icons.add),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            }));
+        floatingActionButton: FloatingActionButton(
+          onPressed: () => incrementCounter(1),
+          tooltip: 'Increment',
+          child: const Icon(Icons.add),
+        ));
   }
 }
