@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:session/src/presentation/features/future.dart';
-import 'package:session/src/presentation/features/stream.dart';
+import 'package:session/src/presentation/features/widgets/future.dart';
+import 'package:session/src/presentation/features/widgets/stream.dart';
 import 'package:session/src/presentation/features/widgets/center.dart';
 import 'package:session/src/presentation/features/widgets/column.dart';
 import 'package:session/src/presentation/features/widgets/row.dart';
 import 'package:session/src/presentation/features/widgets/text.dart';
 import 'package:session/src/presentation/widgets/chip.dart';
 
-import '../features/state_ful.dart';
-import '../features/state_less.dart';
+import '../features/widgets/state_ful.dart';
+import '../features/widgets/state_less.dart';
 import '../features/widgets/app_bar.dart';
 import '../features/widgets/bottom_nav_bar.dart';
 import '../features/widgets/container.dart';
