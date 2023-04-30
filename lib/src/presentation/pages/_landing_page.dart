@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:session/src/presentation/features/future.dart';
-import 'package:session/src/presentation/features/stream.dart';
+import 'package:session/src/presentation/features/widgets/future.dart';
+import 'package:session/src/presentation/features/widgets/stream.dart';
 import 'package:session/src/presentation/features/widgets/center.dart';
 import 'package:session/src/presentation/features/widgets/column.dart';
 import 'package:session/src/presentation/features/widgets/row.dart';
 import 'package:session/src/presentation/features/widgets/text.dart';
 import 'package:session/src/presentation/widgets/chip.dart';
 
-import '../features/state_ful.dart';
-import '../features/state_less.dart';
+import '../features/widgets/state_ful.dart';
+import '../features/widgets/state_less.dart';
 import '../features/widgets/app_bar.dart';
 import '../features/widgets/bottom_nav_bar.dart';
 import '../features/widgets/container.dart';
@@ -66,7 +66,7 @@ class LandingPage extends StatelessWidget {
       builder: (context, constraints) => Scaffold(
         body: SingleChildScrollView(
           child: Container(
-              height: constraints.maxHeight * 3.5,
+              height: constraints.maxHeight * 2.8,
               width: double.maxFinite,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0)),
               child: Padding(
@@ -155,10 +155,9 @@ class LandingPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
                       child: Container(
-                        height: constraints.maxWidth < 600 ? 650 : 450,
+                        height: constraints.maxWidth < 600 ? 500 : 250,
                         width: double.maxFinite,
-                        decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -168,8 +167,7 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), widgetsGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => widgetsGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widgetsGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -182,10 +180,9 @@ class LandingPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
                       child: Container(
-                        height: constraints.maxWidth < 600 ? 650 : 450,
+                        height: constraints.maxWidth < 600 ? 270 : 250,
                         width: double.maxFinite,
-                        decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -195,8 +192,7 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), layoutGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => layoutGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => layoutGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -209,10 +205,9 @@ class LandingPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
                       child: Container(
-                        height: 250,
+                        height: constraints.maxWidth < 600 ? 200 : 250,
                         width: double.maxFinite,
-                        decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -222,8 +217,7 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), inputGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(
-                                        context, MaterialPageRoute(builder: (context) => inputGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => inputGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -236,10 +230,9 @@ class LandingPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 10.0),
                       child: Container(
-                        height: 250,
+                        height: constraints.maxWidth < 600 ? 200 : 250,
                         width: double.maxFinite,
-                        decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -249,8 +242,7 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), snapshotGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) => snapshotGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => snapshotGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
