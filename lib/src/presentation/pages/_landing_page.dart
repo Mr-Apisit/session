@@ -66,7 +66,7 @@ class LandingPage extends StatelessWidget {
       builder: (context, constraints) => Scaffold(
         body: SingleChildScrollView(
           child: Container(
-              height: constraints.maxHeight * 2.8,
+              height: constraints.maxWidth < 600 ? constraints.maxHeight * 2.8 : constraints.maxHeight * 2.0,
               width: double.maxFinite,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0)),
               child: Padding(
