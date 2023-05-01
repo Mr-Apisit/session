@@ -15,7 +15,7 @@ class LandingPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text("ขอมูลจาก Internet และ ข้อมูลจาก Local store"),
+          title: const Text("ข้อมูลจาก API และ ข้อมูลจาก Local store"),
           // This check specifies which nested Scrollable's scroll notification
           // should be listened to.
           //
