@@ -7,8 +7,6 @@ import 'package:session/src/presentation/features/widgets/row.dart';
 import 'package:session/src/presentation/features/widgets/text.dart';
 import 'package:session/src/presentation/widgets/chip.dart';
 
-import '../features/widgets/state_ful.dart';
-import '../features/widgets/state_less.dart';
 import '../features/widgets/app_bar.dart';
 import '../features/widgets/bottom_nav_bar.dart';
 import '../features/widgets/container.dart';
@@ -24,6 +22,7 @@ import '../features/widgets/sized_box.dart';
 import '../features/widgets/tab_bar.dart';
 import '../features/widgets/text_input.dart';
 import '../widgets/text_button.dart';
+import 'session_3_adaptive.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -77,77 +76,24 @@ class LandingPage extends StatelessWidget {
                       "Flutter Beginner",
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                    constraints.maxWidth > 600
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              MyTextButton(
-                                text: "State ful widget",
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (ctx) => const StateFul(
-                                        title: "State full widget",
-                                      ),
-                                    ),
-                                  );
-                                },
+                    const SizedBox(height: 15),
+                    Container(
+                      decoration:
+                          BoxDecoration(color: Colors.lightGreen.shade50, borderRadius: BorderRadius.circular(12)),
+                      child: MyTextButton(
+                        text: "Layout Adaptive",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => const LayoutAdaptive(
+                                "Section 3 Layout Adaptive",
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Text("หรือ", style: Theme.of(context).textTheme.titleLarge),
-                              ),
-                              MyTextButton(
-                                text: "State less widget",
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (ctx) => const StateLess(
-                                        title: "State less widget",
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              MyTextButton(
-                                text: "State ful widget",
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (ctx) => const StateFul(
-                                        title: "State full widget",
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 15.0),
-                                child: Text("หรือ", style: Theme.of(context).textTheme.titleLarge),
-                              ),
-                              MyTextButton(
-                                text: "State less widget",
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (ctx) => const StateLess(
-                                        title: "State less widget",
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0),
                       child: Text("Widgets พื้นฐาน", style: Theme.of(context).textTheme.titleLarge),
@@ -157,7 +103,8 @@ class LandingPage extends StatelessWidget {
                       child: Container(
                         height: constraints.maxWidth < 600 ? 500 : 250,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -167,7 +114,8 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), widgetsGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => widgetsGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => widgetsGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -182,7 +130,8 @@ class LandingPage extends StatelessWidget {
                       child: Container(
                         height: constraints.maxWidth < 600 ? 270 : 250,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -192,7 +141,8 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), layoutGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => layoutGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => layoutGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -207,7 +157,8 @@ class LandingPage extends StatelessWidget {
                       child: Container(
                         height: constraints.maxWidth < 600 ? 200 : 250,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -217,7 +168,8 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), inputGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => inputGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(
+                                        context, MaterialPageRoute(builder: (context) => inputGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
@@ -232,7 +184,8 @@ class LandingPage extends StatelessWidget {
                       child: Container(
                         height: constraints.maxWidth < 600 ? 200 : 250,
                         width: double.maxFinite,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(7.0), color: Colors.grey.shade100),
                         child: Wrap(
                           spacing: 6.0,
                           alignment: WrapAlignment.center,
@@ -242,7 +195,8 @@ class LandingPage extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: MyChip((i + 1).toString(), snapshotGroup[i]["topic"],
-                                    onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => snapshotGroup[i]["navigator"]))),
+                                    onPressed: () => Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) => snapshotGroup[i]["navigator"]))),
                               ),
                           ],
                         ),
