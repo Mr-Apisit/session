@@ -31,17 +31,17 @@ class Example1 extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = List.from(travelList).map((e) => TravelModel.fromJson(e));
 
-    final Widget image = Semantics(
-      label: '${data.first.id} ${data.first.user}',
-      child: Material(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-        clipBehavior: Clip.antiAlias,
-        child: Image.network(
-          data.first.webformatUrl,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
+    // final Widget image = Semantics(
+    //   label: '${data.first.id} ${data.first.user}',
+    //   child: Material(
+    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+    //     clipBehavior: Clip.antiAlias,
+    //     child: Image.network(
+    //       data.first.webformatUrl,
+    //       fit: BoxFit.cover,
+    //     ),
+    //   ),
+    // );
 
     return Material(
       color: Colors.black,
@@ -64,16 +64,16 @@ class Example1 extends StatelessWidget {
     );
   }
 
-  Widget _stack(Widget image) {
-    return Stack(
-      alignment: Alignment.bottomCenter,
-      children: [
-        image,
-        const Text(
-          "Hello world",
-          style: TextStyle(color: Colors.white),
-        ),
-      ],
-    );
-  }
+  // Widget _stack(Widget image) {
+  //   return Stack(
+  //     alignment: Alignment.bottomCenter,
+  //     children: [
+  //       image,
+  //       const Text(
+  //         "Hello world",
+  //         style: TextStyle(color: Colors.white),
+  //       ),
+  //     ],
+  //   );
+  // }
 }
