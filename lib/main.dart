@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext cntext) {
     return MaterialApp(
         debugShowCheckedModeBanner: true,
         title: 'Flutter Demo',
@@ -29,7 +29,20 @@ class Example1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final data = List.from(travelList).map((e) => TravelModel.fromJson(e));
+    final data = List.from(travelList).map((e) => TravelModel.fromJson(e));
+
+    final Widget image = Semantics(
+      label: '${data.first.id} ${data.first.user}',
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+        clipBehavior: Clip.antiAlias,
+        child: Image.network(
+          data.first.webformatUrl,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+
     return Material(
       color: Colors.black,
       child: Center(
@@ -42,13 +55,25 @@ class Example1 extends StatelessWidget {
           ),
           child: Container(
             alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: Color(0xFFFFFFFF),
-            ),
-            child: const Text("Demo 1"),
+            decoration: const BoxDecoration(color: Color(0xFFFFFFF0)),
+            child: const Text("Demo"),
+            // child: _stack(image),
           ),
         ),
       ),
+    );
+  }
+
+  Widget _stack(Widget image) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        image,
+        const Text(
+          "Hello world",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
     );
   }
 }
