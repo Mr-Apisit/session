@@ -31,109 +31,82 @@ class Example1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final data = List.from(travelList).map((e) => TravelModel.fromJson(e));
-
-    // final Widget image = Semantics(
-    //   label: '${data.first.id} ${data.first.user}',
-    //   child: Material(
-    //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-    //     clipBehavior: Clip.antiAlias,
-    //     child: Image.network(
-    //       data.first.webformatUrl,
-    //       fit: BoxFit.cover,
-    //     ),
-    //   ),
-    // );
-
     return Material(
-      color: Colors.black,
+      color: Colors.white,
       child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            minWidth: 300,
-            maxWidth: 400,
-            minHeight: 650,
-            maxHeight: 950,
-          ),
-          child: Container(
-            height: 700,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(color: Color(0xFFFFFFF0)),
-            child: SizedBox(
-              height: 150,
-              width: 250,
-              // color: Colors.red.withOpacity(0.5),
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(4.0)),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: NetworkImage(
-                            "https://pixabay.com/get/g54e2c3cd12dc3581b81d65262950e99d59e12f52f75be48d1f1b798d48e0a67fb3fc80626ea54015663252f12098da237f9e2865dc4984a2e752bd65458696af_640.jpg",
-                          ),
-                        ),
+        child: SizedBox(
+          height: 150,
+          width: 250,
+          // color: Colors.red.withOpacity(0.5),
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Positioned.fill(
+                child: Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(4.0)),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: NetworkImage(
+                        "https://pixabay.com/get/g54e2c3cd12dc3581b81d65262950e99d59e12f52f75be48d1f1b798d48e0a67fb3fc80626ea54015663252f12098da237f9e2865dc4984a2e752bd65458696af_640.jpg",
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 5,
-                    left: 10,
-                    child: Container(
-                      height: 30,
-                      width: 20,
-                      decoration: const BoxDecoration(
-                        // color: Colors.black,
-                        image: DecorationImage(
-                          opacity: .4,
-                          image: AssetImage("images/logo.png"),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(.2),
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(4.0),
-                        bottomRight: Radius.circular(4.0),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 50,
-                    left: 10,
-                    child: Text(
-                      "Is' me Gugu",
-                      style: TextStyle(color: Colors.white.withOpacity(.7)),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 25,
-                    left: 10,
-                    child: Text(
-                      "Is' me Gugu",
-                      style: TextStyle(fontSize: 10, color: Colors.white.withOpacity(.4)),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 5,
-                    right: 10,
-                    child: Text(
-                      "Ref.Gugu",
-                      style: TextStyle(fontSize: 6, color: Colors.white.withOpacity(.4)),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            // child: _stack(image),
+              Positioned(
+                top: 5,
+                left: 10,
+                child: Container(
+                  height: 30,
+                  width: 20,
+                  decoration: const BoxDecoration(
+                    // color: Colors.black,
+                    image: DecorationImage(
+                      opacity: .4,
+                      image: AssetImage("images/logo.png"),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(.7),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(4.0),
+                    bottomRight: Radius.circular(4.0),
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 50,
+                left: 10,
+                child: Text(
+                  "Is' me Gugu",
+                  style: TextStyle(color: Colors.white.withOpacity(.7)),
+                ),
+              ),
+              Positioned(
+                bottom: 25,
+                left: 10,
+                child: Text(
+                  "Is' me Gugu",
+                  style: TextStyle(fontSize: 10, color: Colors.white.withOpacity(.6)),
+                ),
+              ),
+              Positioned(
+                bottom: 5,
+                right: 10,
+                child: Text(
+                  "Ref.Gugu",
+                  style: TextStyle(fontSize: 6, color: Colors.white.withOpacity(.6)),
+                ),
+              ),
+            ],
           ),
         ),
+        // child: _stack(image),
       ),
     );
   }
