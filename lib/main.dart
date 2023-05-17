@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 ///  cunc. [unawaited] นี้มีไว้เพื่อบอกให้ไม่จำเป็นต้องรอ func ภายในเงื่อนไขนี้เสร็จก่อน
-///  โดย Application นี้ต้องการมุมมองจอภาพเพียงแค่ "แนวตั้ง" 
-    /// * จำเป็นต้องมี [WidgetsFlutterBinding.ensureInitialized] เพื่ออนุญาตกระบวนการนั้น
-    /// * set [DeviceOrientation.portraitUp] ใน [SystemChrome.setPreferredOrientations]
+///  โดย [Application] นี้ต้องการมุมมองจอภาพเพียงแค่ "แนวตั้ง"
+/// * จำเป็นต้องมี [WidgetsFlutterBinding.ensureInitialized] เพื่ออนุญาตกระบวนการนั้น
+/// * set [DeviceOrientation.portraitUp] ใน [SystemChrome.setPreferredOrientations]
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   unawaited(SystemChrome.setPreferredOrientations(
@@ -22,35 +22,210 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'My Flutter app'),
+
+      /// [MyHomePage]
+      home: MyHomePage(title: 'My Flutter app'),
     );
   }
 }
 
+/// [MyHomePage] เป็น class widget หลักในการแสดงผลซึ่ง
+/// class ได้ inheritance  มาจาก class [StatelessWidget]
+/// มี [title] เป็น Map<String,String> ชื่อ app เพื่อนำไปใช้กับ Class ที่กล่าวอ้างถึง
 class MyHomePage extends StatelessWidget {
   final String title;
   const MyHomePage({required this.title, super.key});
 
+  /// สำหรับ Application page จะต้องเริ่มต้นด้วย [Scaffold] class เพื่อการใช้งานที่ง่ายและสะดวก
+  /// [extendBodyBehindAppBar] เป็นค่ากำหนดจะให้ [body] ทะลุ [AppBar]
+  /// โดยไอเจ้า [Scaffold] เองจะมี key [appBar] มาให้เราใส่ [AppBar] ได้
+  /// [AppBar] จะมี key [actions] เพื่อให้เราใส่ [Icon] หรือ [IconButton] และ[Widget] อื่นๆ ได้ดีก
+  /// และ key [body] ไว้ใส้ Layout class เช่น [Container], [SizedBox] , [SingleChildScrollView]
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Container(
-        color: Colors.white,
+      extendBodyBehindAppBar: false,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.black),
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Icon(Icons.notifications_active),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Icon(Icons.person_4_rounded),
+          ),
+        ],
+      ),
+      body: myView(),
+    );
+  }
+
+  /// [myView] เป็น widget ที่สร้างขึนเองเพื่อโดยจะ return [SingleChildScrollView] ที่เป็นตัวสร้างการ [Scrolling]
+  /// โดยจะมี [child] เป็น [Column] เพื่อแสดงผล [List] ในแนวตั้ง
+  ///
+  Widget myView() {
+    return Container(
+      width: double.maxFinite,
+      color: Colors.white,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 25),
+            myFirstWidgets(),
+            const SizedBox(height: 25),
+            mySecondWidgets(),
+            const SizedBox(height: 25),
+            myThirdWidgets(),
+            const SizedBox(height: 15),
+            myFourthWidget()
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// [myFirstWidgets] คือ Widget ที่ทำการสร้างเองและ return [Container] ออกไปซึ่งมี [child] เป็น [Row] ที่ทำการ [loop] [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ เมนู
+  Widget myFirstWidgets() {
+    return Container(
+      height: 80,
+      width: 340,
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+          color: Colors.black12, borderRadius: BorderRadius.circular(12)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          for (int i = 1; i < 5; i++)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 50,
+                child: Column(children: [
+                  const FlutterLogo(),
+                  Text("รายการ $i"),
+                ]),
+              ),
+            )
+        ],
+      ),
+    );
+  }
+
+  /// [mySecondWidgets] คือ Widget ที่ทำการสร้างเองและ return [SizedBox] ออกไปซึ่งมี [child] เป็น [SingleChildScrollView] เพื่อ scrolling [Row] ที่เป็น [child]ของตัวเอง โดยทำการ For loop [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ ภาพสไลด์
+  ///
+  Widget mySecondWidgets() {
+    return SizedBox(
+      height: 150,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            for (int i = 1; i < 5; i++)
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Container(
+                  height: 150,
+                  width: 320,
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: const FlutterLogo(),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// [myThirdWidgets] เป็น Widget ?ี่สร้างขึ้นเองเพื่อ return ตาราง [GridView] โดยกำหนดให้มี 3 แถว [crossAxisCount] ห่างกัน 7 [mainAxisSpacing] เว้นกัน 10[crossAxisSpacing] และทำ การ loop ใน [children] เพื่อแสดงผล [Container] ที่มี [child] เป็น [Column] และมีองค์ประกอบอยู่ใน [children]
+  ///
+  Widget myThirdWidgets() {
+    return SizedBox(
+      width: 350,
+      height: 300,
+      child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: 3,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 7.0,
+        childAspectRatio: 1.3,
+        children: [
+          for (int i = 1; i < 10; i++)
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const FlutterLogo(),
+                  const SizedBox(height: 5),
+                  Text("รายการ $i"),
+                ],
+              ),
+            )
+        ],
+      ),
+    );
+  }
+
+  /// [myFourthWidget] เป็น widget ที่สร้างขึ้นเองเพื่อ return [SizedBox] เพื่อให้โครงสร้างแก่ [Column] ที่เป็น [child] ทำการ loop องค์ประกอบภ่ยใน [children] ของ [Column] เอง
+  ///
+  Widget myFourthWidget() {
+    return SizedBox(
+      child: Column(
+        children: [
+          for (int i = 1; i < 20; i++)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: 400,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 90,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(.1),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          const FlutterLogo(size: 40),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("หัวข้อ ........... $i"),
+                              const Text("คำอธิบาย.................")
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      height: 15,
+                    )
+                  ],
+                ),
+              ),
+            ),
+        ],
       ),
     );
   }
