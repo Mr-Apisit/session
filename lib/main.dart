@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,34 +38,91 @@ class MyApp extends StatelessWidget {
 class Demo extends StatelessWidget {
   const Demo({super.key});
 
-  Widget button(Widget icon, String value) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Colors.grey.shade200),
-          borderRadius: BorderRadius.circular(12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [icon, Text(value)],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.grey.shade50,
+        alignment: Alignment.center,
+        color: Colors.blue.shade50,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("ค่าของ 2 + (3x4) ตรง\nกับข้อใด?"),
-            button(Icon(Icons.circle), "12"),
-            button(Icon(Icons.change_history_outlined), "12"),
-            button(Icon(Icons.rectangle), "12"),
-            button(Icon(Icons.star), "12"),
+            Text(
+              "ค่าของ 2 + (3x4) ตรง\nกับข้อใด?",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 70),
+            button(
+              context,
+              icon: const Icon(
+                CupertinoIcons.circle,
+                size: 24,
+                color: Colors.red,
+              ),
+              choice: "12",
+              selected: false,
+            ),
+            const SizedBox(height: 25),
+            button(
+              context,
+              icon: const Icon(
+                CupertinoIcons.triangle,
+                color: Colors.green,
+                size: 24,
+              ),
+              choice: "13",
+              selected: false,
+            ),
+            const SizedBox(height: 25),
+            button(
+              context,
+              icon: const Icon(
+                CupertinoIcons.rectangle,
+                size: 24,
+                color: Colors.pink,
+              ),
+              choice: "14",
+              selected: true,
+            ),
+            const SizedBox(height: 25),
+            button(
+              context,
+              icon: const Icon(
+                CupertinoIcons.star,
+                size: 24,
+                color: Colors.amber,
+              ),
+              choice: "15",
+              selected: false,
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget button(
+    BuildContext context, {
+    required Widget icon,
+    required String choice,
+    required bool selected,
+  }) {
+    return Container(
+      height: 80,
+      width: 300,
+      decoration: BoxDecoration(
+          color: selected ? Colors.black12 : Colors.white,
+          border: Border.all(color: Colors.grey.shade200),
+          borderRadius: BorderRadius.circular(12)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(padding: const EdgeInsets.only(right: 70.0), child: icon),
+          Padding(
+              padding: const EdgeInsets.only(left: 70.0),
+              child:
+                  Text(choice, style: Theme.of(context).textTheme.titleMedium))
+        ],
       ),
     );
   }
@@ -96,125 +154,126 @@ class Demo extends StatelessWidget {
 //   }
 // }
 
-/// [MyHomePage] เป็น class widget หลักในการแสดงผลซึ่ง
-/// class ได้ inheritance  มาจาก class [StatelessWidget]
-/// มี [title] เป็น Map<String,String> ชื่อ app เพื่อนำไปใช้กับ Class ที่กล่าวอ้างถึง
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({required this.title, super.key});
+// /// [MyHomePage] เป็น class widget หลักในการแสดงผลซึ่ง
+// /// class ได้ inheritance  มาจาก class [StatelessWidget]
+// /// มี [title] เป็น Map<String,String> ชื่อ app เพื่อนำไปใช้กับ Class ที่กล่าวอ้างถึง
+// class MyHomePage extends StatelessWidget {
+//   final String title;
+//   const MyHomePage({required this.title, super.key});
 
-  /// สำหรับ Application page จะต้องเริ่มต้นด้วย [Scaffold] class เพื่อการใช้งานที่ง่ายและสะดวก
-  /// [extendBodyBehindAppBar] เป็นค่ากำหนดจะให้ [body] ทะลุ [AppBar]
-  /// โดยไอเจ้า [Scaffold] เองจะมี key [appBar] มาให้เราใส่ [AppBar] ได้
-  /// [AppBar] จะมี key [actions] เพื่อให้เราใส่ [Icon] หรือ [IconButton] และ[Widget] อื่นๆ ได้ดีก
-  /// และ key [body] ไว้ใส้ Layout class เช่น [Container], [SizedBox] , [SingleChildScrollView]
+//   /// สำหรับ Application page จะต้องเริ่มต้นด้วย [Scaffold] class เพื่อการใช้งานที่ง่ายและสะดวก
+//   /// [extendBodyBehindAppBar] เป็นค่ากำหนดจะให้ [body] ทะลุ [AppBar]
+//   /// โดยไอเจ้า [Scaffold] เองจะมี key [appBar] มาให้เราใส่ [AppBar] ได้
+//   /// [AppBar] จะมี key [actions] เพื่อให้เราใส่ [Icon] หรือ [IconButton] และ[Widget] อื่นๆ ได้ดีก
+//   /// และ key [body] ไว้ใส้ Layout class เช่น [Container], [SizedBox] , [SingleChildScrollView]
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: false,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0,
-        backgroundColor: Colors.grey,
-        title: Text(
-          title,
-          style: const TextStyle(color: Colors.black),
-        ),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Icon(Icons.notifications_active),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Icon(Icons.person_4_rounded),
-          ),
-        ],
-      ),
-      body: myView(),
-    );
-  }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       extendBodyBehindAppBar: false,
+//       appBar: AppBar(
+//         iconTheme: const IconThemeData(color: Colors.black),
+//         elevation: 0,
+//         backgroundColor: Colors.grey,
+//         title: Text(
+//           title,
+//           style: const TextStyle(color: Colors.black),
+//         ),
+//         actions: const [
+//           Padding(
+//             padding: EdgeInsets.symmetric(horizontal: 8.0),
+//             child: Icon(Icons.notifications_active),
+//           ),
+//           Padding(
+//             padding: EdgeInsets.symmetric(horizontal: 8.0),
+//             child: Icon(Icons.person_4_rounded),
+//           ),
+//         ],
+//       ),
+//       body: myView(),
+//     );
+//   }
 
-  /// [myView] เป็น widget ที่สร้างขึนเองเพื่อโดยจะ return [SingleChildScrollView] ที่เป็นตัวสร้างการ [Scrolling]
-  /// โดยจะมี [child] เป็น [Column] เพื่อแสดงผล [List] ในแนวตั้ง
-  ///
-  ///
+//   /// [myView] เป็น widget ที่สร้างขึนเองเพื่อโดยจะ return [SingleChildScrollView] ที่เป็นตัวสร้างการ [Scrolling]
+//   /// โดยจะมี [child] เป็น [Column] เพื่อแสดงผล [List] ในแนวตั้ง
+//   ///
+//   ///
 
-  Widget myView() {
-    return Container(
-      width: double.infinity,
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 25),
-            myFirstWidgets(),
-            const SizedBox(height: 25),
-            mySecondWidgets(),
-            const SizedBox(height: 25),
-            const MyThirdWidget(),
-            const SizedBox(height: 15),
-            const MyFourthWidget()
-          ],
-        ),
-      ),
-    );
-  }
+//   Widget myView() {
+//     return Container(
+//       width: double.infinity,
+//       color: Colors.white,
+//       child: SingleChildScrollView(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const SizedBox(height: 25),
+//             myFirstWidgets(),
+//             const SizedBox(height: 25),
+//             mySecondWidgets(),
+//             const SizedBox(height: 25),
+//             const MyThirdWidget(),
+//             const SizedBox(height: 15),
+//             const MyFourthWidget()
+//           ],
+//         ),
+//       ),
+//     );
+//   }
 
-  /// [myFirstWidgets] คือ Widget ที่ทำการสร้างเองและ return [Container] ออกไปซึ่งมี [child] เป็น [Row] ที่ทำการ [loop] [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ เมนู
-  Widget myFirstWidgets() {
-    return Container(
-      height: 80,
-      width: 340,
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          for (int i = 1; i < 5; i++)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 50,
-                child: Column(children: [
-                  const FlutterLogo(),
-                  Text("รายการ $i"),
-                ]),
-              ),
-            )
-        ],
-      ),
-    );
-  }
+//   /// [myFirstWidgets] คือ Widget ที่ทำการสร้างเองและ return [Container] ออกไปซึ่งมี [child] เป็น [Row] ที่ทำการ [loop] [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ เมนู
+//   Widget myFirstWidgets() {
+//     return Container(
+//       height: 80,
+//       width: 340,
+//       padding: const EdgeInsets.symmetric(horizontal: 10),
+//       decoration: BoxDecoration(
+//           color: Colors.black12, borderRadius: BorderRadius.circular(12)),
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           for (int i = 1; i < 5; i++)
+//             Padding(
+//               padding: const EdgeInsets.all(8.0),
+//               child: SizedBox(
+//                 height: 50,
+//                 child: Column(children: [
+//                   const FlutterLogo(),
+//                   Text("รายการ $i"),
+//                 ]),
+//               ),
+//             )
+//         ],
+//       ),
+//     );
+//   }
 
-  /// [mySecondWidgets] คือ Widget ที่ทำการสร้างเองและ return [SizedBox] ออกไปซึ่งมี [child] เป็น [SingleChildScrollView]
-  /// เพื่อ scrolling [Row] ที่เป็น [child]ของตัวเอง โดยทำการ For loop [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ ภาพสไลด์
-  ///
-  Widget mySecondWidgets() {
-    return SizedBox(
-      height: 150,
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            for (int i = 1; i < 5; i++)
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Container(
-                  height: 150,
-                  width: 320,
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: const FlutterLogo(),
-                ),
-              ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//   /// [mySecondWidgets] คือ Widget ที่ทำการสร้างเองและ return [SizedBox] ออกไปซึ่งมี [child] เป็น [SingleChildScrollView]
+//   /// เพื่อ scrolling [Row] ที่เป็น [child]ของตัวเอง โดยทำการ For loop [Padding] ที่มี [child] เป็นองค์ประกอบของ รายการ ภาพสไลด์
+//   ///
+//   Widget mySecondWidgets() {
+//     return SizedBox(
+//       height: 150,
+//       child: SingleChildScrollView(
+//         scrollDirection: Axis.horizontal,
+//         child: Row(
+//           children: [
+//             for (int i = 1; i < 5; i++)
+//               Padding(
+//                 padding: const EdgeInsets.all(4.0),
+//                 child: Container(
+//                   height: 150,
+//                   width: 320,
+//                   decoration: BoxDecoration(
+//                     color: Colors.black12,
+//                     borderRadius: BorderRadius.circular(15),
+//                   ),
+//                   child: const FlutterLogo(),
+//                 ),
+//               ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
