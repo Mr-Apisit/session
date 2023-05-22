@@ -29,7 +29,43 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
 
       /// [MyHomePage]
-      home: MyHomePage(title: "Hello world"),
+      home: Demo(),
+    );
+  }
+}
+
+class Demo extends StatelessWidget {
+  const Demo({super.key});
+
+  Widget button(Widget icon, String value) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey.shade200),
+          borderRadius: BorderRadius.circular(12)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [icon, Text(value)],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        color: Colors.grey.shade50,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("ค่าของ 2 + (3x4) ตรง\nกับข้อใด?"),
+            button(Icon(Icons.circle), "12"),
+            button(Icon(Icons.change_history_outlined), "12"),
+            button(Icon(Icons.rectangle), "12"),
+            button(Icon(Icons.star), "12"),
+          ],
+        ),
+      ),
     );
   }
 }
