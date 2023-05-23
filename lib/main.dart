@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'myview.dart';
-
 ///  cunc. [unawaited] นี้มีไว้เพื่อบอกให้ไม่จำเป็นต้องรอ func ภายในเงื่อนไขนี้เสร็จก่อน
 ///  โดย [Application] นี้ต้องการมุมมองจอภาพเพียงแค่ "แนวตั้ง"
 /// * จำเป็นต้องมี [WidgetsFlutterBinding.ensureInitialized] เพื่ออนุญาตกระบวนการนั้น
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       title: 'Flutter Demo',
 
       /// [MyHomePage]
@@ -41,6 +39,7 @@ class Demo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Container(
         alignment: Alignment.center,
         color: Colors.blue.shade50,
@@ -107,27 +106,124 @@ class Demo extends StatelessWidget {
     required String choice,
     required bool selected,
   }) {
-    return Container(
-      height: 80,
-      width: 300,
-      decoration: BoxDecoration(
-          color: selected ? Colors.black12 : Colors.white,
-          border: Border.all(color: Colors.grey.shade200),
-          borderRadius: BorderRadius.circular(12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(padding: const EdgeInsets.only(right: 70.0), child: icon),
-          Padding(
-              padding: const EdgeInsets.only(left: 70.0),
-              child:
-                  Text(choice, style: Theme.of(context).textTheme.titleMedium))
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => selected ? const SucessPage() : const ErrorPage()));
+      },
+      child: Container(
+        height: 80,
+        width: 300,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey.shade200),
+            borderRadius: BorderRadius.circular(12)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(padding: const EdgeInsets.only(right: 70.0), child: icon),
+            Padding(
+                padding: const EdgeInsets.only(left: 70.0),
+                child: Text(choice, style: Theme.of(context).textTheme.titleMedium))
+          ],
+        ),
       ),
     );
   }
 }
 
+class ErrorPage extends StatelessWidget {
+  const ErrorPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        title: Text(
+          "Result",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const <Widget>[
+            Icon(
+              Icons.close_outlined,
+              size: 80,
+              color: Colors.red,
+            ),
+            SizedBox(
+              height: 100,
+            ),
+            Text("You choose incorrect answer.")
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class SucessPage extends StatelessWidget {
+  const SucessPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: Text(
+          "Result",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Icon(
+              Icons.check,
+              size: 80,
+              color: Colors.green,
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            const Text("You choose correct answer."),
+            const SizedBox(
+              height: 25,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: 50,
+                width: 100,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.blue.shade100, Colors.yellowAccent, Colors.white],
+                    stops: const [0.1, 0.15, 1.0],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Text("OK"),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
 // class Name extends StatelessWidget {
 //   final String title;
 //   final String description;
