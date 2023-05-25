@@ -37,9 +37,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Demo extends StatelessWidget {
+class Demo extends StatefulWidget {
   const Demo({super.key});
 
+  @override
+  State<Demo> createState() => _DemoState();
+}
+
+class _DemoState extends State<Demo> {
+  String answer = "wait to answer";
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +63,8 @@ class Demo extends StatelessWidget {
               "ค่าของ 2 + (3x4) ตรง\nกับข้อใด?",
               style: Theme.of(context).textTheme.titleLarge,
             ),
+            const SizedBox(height: 25),
+            Text(answer),
             const SizedBox(height: 70),
             CustomButton(
               icon: const Icon(
@@ -88,8 +97,13 @@ class Demo extends StatelessWidget {
                 color: Colors.pink,
               ),
               label: Text("14", style: Theme.of(context).textTheme.titleMedium),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SucessPage()));
+              onPressed: () async {
+                String value = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return SucessPage(answer: (value) {});
+                }));
+                setState(() {
+                  answer = value;
+                });
               },
             ),
             const SizedBox(height: 25),
