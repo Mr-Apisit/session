@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:session/widgets/custom_button.dart';
 
 class SucessPage extends StatelessWidget {
-  final void Function(String) answer;
-  const SucessPage({required this.answer, super.key});
+  const SucessPage({super.key});
 
   @override
   Widget build(BuildContext context) {

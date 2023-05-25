@@ -46,7 +46,7 @@ class Demo extends StatefulWidget {
 
 class _DemoState extends State<Demo> {
   String answer = "wait to answer";
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +99,7 @@ class _DemoState extends State<Demo> {
               label: Text("14", style: Theme.of(context).textTheme.titleMedium),
               onPressed: () async {
                 String value = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return SucessPage(answer: (value) {});
+                  return const SucessPage();
                 }));
                 setState(() {
                   answer = value;
