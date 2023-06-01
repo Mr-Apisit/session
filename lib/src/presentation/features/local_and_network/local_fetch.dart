@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:session/src/data/remote/local_remote.dart';
 
 import '../../../data/remote/network_remote.dart';
 import 'pokemon_tile.dart';
