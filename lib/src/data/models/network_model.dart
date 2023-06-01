@@ -45,23 +45,3 @@ class Pokemon {
 
   List<Pokemon> pokemonFromJson(String str) => List<Pokemon>.from(json.decode(str).map((x) => Pokemon.fromJson(x)));
 }
-
-class NextEvolution {
-  final String? num;
-  final String? name;
-
-  NextEvolution({
-    this.num,
-    this.name,
-  });
-
-  factory NextEvolution.fromJson(Map<String, dynamic> json) => NextEvolution(
-        num: json["num"],
-        name: json["name"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "num": num,
-        "name": name,
-      };
-}
