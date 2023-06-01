@@ -31,7 +31,7 @@ class MyChip extends StatelessWidget {
       ), //CircleAvatar
       label: Text(
         topic,
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Theme.of(context).textTheme.titleMedium,
       ), //Text
     );
   }
