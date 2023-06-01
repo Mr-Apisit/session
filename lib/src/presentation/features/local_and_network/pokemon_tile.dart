@@ -1,5 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:image_network/image_network.dart';
 
 import '../../../data/models/network_model.dart';
 import 'network_fetch.dart';
@@ -15,7 +15,7 @@ class Tile extends StatefulWidget {
 
 class _TileState extends State<Tile> {
   late bool addFavorite;
-  
+
   @override
   void initState() {
     addFavorite = widget.favorite;
@@ -63,20 +63,20 @@ class _TileState extends State<Tile> {
               ),
             )),
         Positioned(
-            top: 10,
+            top: 0,
             child: GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return PokemonDetails(details: widget.data);
                 }));
               },
-              child: CachedNetworkImage(
-                  imageUrl: widget.data.img ?? "",
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      CircularProgressIndicator(
-                          value: downloadProgress.progress),
-                  errorWidget: (context, url, error) =>
-                      const Icon(Icons.error)),
+              child: ImageNetwork(
+                  fitWeb: BoxFitWeb.contain,
+                  image: widget.data.img ?? "",
+                  height: 120,
+                  width: 120,
+                  onLoading: const CircularProgressIndicator(),
+                  onError: const Icon(Icons.error)),
             )),
       ],
     );
