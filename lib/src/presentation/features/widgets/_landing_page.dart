@@ -7,23 +7,23 @@ import 'package:session/src/presentation/features/widgets/row.dart';
 import 'package:session/src/presentation/features/widgets/text.dart';
 import 'package:session/src/presentation/widgets/chip.dart';
 
-import '../features/widgets/state_ful.dart';
-import '../features/widgets/state_less.dart';
-import '../features/widgets/app_bar.dart';
-import '../features/widgets/bottom_nav_bar.dart';
-import '../features/widgets/container.dart';
-import '../features/widgets/data_table.dart';
-import '../features/widgets/icon.dart';
+import 'state_ful.dart';
+import 'state_less.dart';
+import 'app_bar.dart';
+import 'bottom_nav_bar.dart';
+import 'container.dart';
+import 'data_table.dart';
+import 'icon.dart';
 
-import '../features/widgets/image_local.dart';
-import '../features/widgets/image_network.dart';
-import '../features/widgets/listview.dart';
-import '../features/widgets/loading_circular.dart';
-import '../features/widgets/loading_linear.dart';
-import '../features/widgets/sized_box.dart';
-import '../features/widgets/tab_bar.dart';
-import '../features/widgets/text_input.dart';
-import '../widgets/text_button.dart';
+import 'image_local.dart';
+import 'image_network.dart';
+import 'listview.dart';
+import 'loading_circular.dart';
+import 'loading_linear.dart';
+import 'sized_box.dart';
+import 'tab_bar.dart';
+import 'text_input.dart';
+import '../../widgets/text_button.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

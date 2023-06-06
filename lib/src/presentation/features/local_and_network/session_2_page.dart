@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../features/local_and_network/local_fetch.dart';
-import '../features/local_and_network/network_fetch.dart';
+import 'local_fetch.dart';
+import 'network_fetch.dart';
 
 List<String> titles = ["โปเกมอน Go", "ตัวโปรด"];
 

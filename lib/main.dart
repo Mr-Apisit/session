@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'src/presentation/pages/session_2_page.dart';
+import 'src/presentation/features/authentication/ui/authen_page.dart';
 
 // import 'src/presentation/pages/_landing_page.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorSchemeSeed: const Color.fromARGB(255, 211, 211, 211), useMaterial3: true),
-      home: const LandingPage(),
+      home: const AuthenPage(),
     );
   }
 }
