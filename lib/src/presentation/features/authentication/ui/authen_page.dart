@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class AuthenPage extends StatelessWidget {
+class AuthenPage extends StatefulWidget {
   const AuthenPage({super.key});
+
+  @override
+  State<AuthenPage> createState() => _AuthenPageState();
+}
+
+class _AuthenPageState extends State<AuthenPage> {
+  bool hidePassword = true;
+  bool tapLogin = false;
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +34,7 @@ class AuthenPage extends StatelessWidget {
               SizedBox(
                 width: 300,
                 child: TextField(
+                  controller: usernameController,
                   decoration: const InputDecoration(
                     labelText: "username",
                   ),
@@ -37,13 +49,24 @@ class AuthenPage extends StatelessWidget {
               SizedBox(
                 width: 300,
                 child: TextField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
+                  controller: passwordController,
+                  obscureText: hidePassword,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          hidePassword = !hidePassword;
+                        });
+                      },
+                      icon: hidePassword
+                          ? const Icon(Icons.remove_red_eye)
+                          : const Icon(Icons.close),
+                    ),
                     labelText: "password",
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(
-                      RegExp(r"^[a-zA-Z!@#$%^&*()_+]+$"),
+                      RegExp(r"^[0-9a-zA-Z!@#$_+]+$"),
                     ),
                   ],
                 ),
