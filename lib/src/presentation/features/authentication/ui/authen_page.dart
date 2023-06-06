@@ -73,17 +73,30 @@ class _AuthenPageState extends State<AuthenPage> {
               ),
               const SizedBox(height: 40),
               OutlinedButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text(
-                        'กำลังเข้าสู่ระบบ....',
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          '${usernameController.text} กำลังเข้าสู่ระบบ....',
+                        ),
                       ),
-                    ),
-                  );
-                },
-                child: const Text("เข้าสู่ระบบ"),
-              ),
+                    );
+                    setState(() {
+                      tapLogin = !tapLogin;
+                    });
+
+                    Future.delayed(const Duration(seconds: 2), () {
+                      setState(() {
+                        setState(() {
+                          tapLogin = !tapLogin;
+                        });
+                      });
+                    });
+                  },
+                  child: tapLogin
+                      ? const SizedBox(
+                          width: 80, child: LinearProgressIndicator())
+                      : const Text("เข้าสู่ระบบ")),
             ],
           ),
         ),
