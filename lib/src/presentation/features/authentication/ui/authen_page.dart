@@ -73,7 +73,7 @@ class _AuthenPageState extends State<AuthenPage> {
               ),
               const SizedBox(height: 40),
               OutlinedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -84,12 +84,10 @@ class _AuthenPageState extends State<AuthenPage> {
                     setState(() {
                       tapLogin = !tapLogin;
                     });
-
-                    Future.delayed(const Duration(seconds: 2), () {
+                    await Future.delayed(const Duration(seconds: 2));
+                    setState(() {
                       setState(() {
-                        setState(() {
-                          tapLogin = !tapLogin;
-                        });
+                        tapLogin = !tapLogin;
                       });
                     });
                   },
