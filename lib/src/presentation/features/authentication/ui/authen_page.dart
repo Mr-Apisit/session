@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AuthenPage extends StatelessWidget {
   const AuthenPage({super.key});
@@ -19,22 +20,32 @@ class AuthenPage extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               const Text("Login เข้าระบบ"),
-              const SizedBox(
+              SizedBox(
                 width: 300,
                 child: TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "username",
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r"^[a-z_]+$"),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 20),
-              const SizedBox(
+              SizedBox(
                 width: 300,
                 child: TextField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "password",
                   ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r"^[a-zA-Z!@#$%^&*()_+]+$"),
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 40),
