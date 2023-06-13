@@ -1,3 +1,4 @@
+
 class AppSizes {
   AppSizes._();
 
@@ -8,5 +9,9 @@ class AppSizes {
   static double paddingRight = 7.0;
   static double paddingHorizontal = 7.0;
   static double iconLarge = 38.0;
+  static double iconWidth = 60;
+  static double bottomNavBarHight = 80;
+  static double iconHight = 80;
   static double radius = 12.0;
+
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,7 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:session/src/constants/colors.dart';
 import 'package:session/src/constants/contents.dart';
 import 'package:session/src/constants/icons.dart';
-import 'package:session/src/constants/sizes.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -13,48 +13,74 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  
+  /// State of index widget screen [List][widgets]
+  int indexWidget = 0;
+  
+  // Input controller to handle text input
+  TextEditingController search = TextEditingController();
+  
+  /// Control screen by [indexWidget]
+  /// first is main screen show title [Appcontents.app]
+  /// Second is second Widget in [widgets] 
+    /// show seach box [Appcontents.search]
+    /// with [CupertinoSearchTextField]
+    /// 
+  List<Widget> widgets = [
+    Center(child: Text(Appcontents.home)),
+    Center(child: Text(Appcontents.search))
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: Appcontents.app,
       theme: ThemeData(
+        primarySwatch: AppColors.genMaterialColor(
+          AppColors.primary,
+        ),
         fontFamily: GoogleFonts.roboto().fontFamily,
-        primaryColor: AppColors.primary,
-        scaffoldBackgroundColor: AppColors.secondary,
       ),
       home: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: Text(Appcontents.home),
+        appBar: AppBar(
+            title: indexWidget == 1
+                ? CupertinoSearchTextField(
+                    controller: search,
+                    placeholder: Appcontents.search,
+                    backgroundColor: AppColors.background,
+                  )
+                : Text(Appcontents.app)),
+        bottomNavigationBar: BottomNavigationBar(
+          showUnselectedLabels: false,
+          items: [
+            BottomNavigationBarItem(
+              label: Appcontents.home,
+              icon: const FaIcon(
+                AppIcons.home,
               ),
-              SizedBox(height: AppSizes.freeSpace),
-              TextButton(
-                onPressed: () {},
-                child: Text(
-                  Appcontents.search,
-                  style: TextStyle(
-                    color: AppColors.primary,
-                  ),
-                ),
+            ),
+            BottomNavigationBarItem(
+              label: Appcontents.search,
+              icon: const FaIcon(
+                AppIcons.search,
               ),
-              SizedBox(height: AppSizes.freeSpace),
-              FaIcon(AppIcons.home, size: AppSizes.iconLarge),
-              SizedBox(height: AppSizes.freeSpace),
-              IconButton(
-                onPressed: () {},
-                icon: const FaIcon(AppIcons.home),
-              )
-            ],
-          ),
+            ),
+          ],
+          currentIndex: indexWidget,
+          onTap: (index) => setState(() {
+            indexWidget = index;
+          }),
         ),
+        body: widgets[indexWidget],
       ),
     );
   }
